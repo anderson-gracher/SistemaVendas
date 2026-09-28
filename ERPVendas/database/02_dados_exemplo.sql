@@ -1,0 +1,33 @@
+/*
+ * ERP Vendas - Dados de exemplo
+ * Uso: isql -b -q -i 02_dados_exemplo.sql
+ * (CPF/CNPJ abaixo são números de teste com dígitos verificadores válidos)
+ */
+
+SET NAMES UTF8;
+CONNECT 'localhost:C:\ERP\dados\VENDAS.FDB' USER 'SYSDBA' PASSWORD 'masterkey';
+
+INSERT INTO CLIENTE (NOME, CPF_CNPJ, EMAIL, TELEFONE, CIDADE, UF)
+  VALUES ('Maria Aparecida Souza', '52998224725', 'maria.souza@exemplo.com.br', '(19) 99876-5432', 'Campinas', 'SP');
+INSERT INTO CLIENTE (NOME, CPF_CNPJ, EMAIL, TELEFONE, CIDADE, UF)
+  VALUES ('João Pedro Almeida', '11144477735', 'joao.almeida@exemplo.com.br', '(11) 98765-1234', 'São Paulo', 'SP');
+INSERT INTO CLIENTE (NOME, CPF_CNPJ, EMAIL, TELEFONE, CIDADE, UF)
+  VALUES ('Distribuidora Horizonte Ltda', '11222333000181', 'compras@horizonte.exemplo.com.br', '(19) 3232-4545', 'Americana', 'SP');
+INSERT INTO CLIENTE (NOME, CPF_CNPJ, EMAIL, TELEFONE, CIDADE, UF)
+  VALUES ('Ana Clara Ribeiro', '39053344705', 'ana.ribeiro@exemplo.com.br', '(31) 99123-4567', 'Belo Horizonte', 'MG');
+
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Notebook 15" Core i5 16GB', 'UN', 4299.90, 15);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Mouse sem fio', 'UN', 89.90, 120);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Teclado mecânico ABNT2', 'UN', 349.00, 40);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Monitor 24" Full HD', 'UN', 1099.00, 25);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Cabo HDMI 2m', 'UN', 39.90, 200);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Papel A4 (resma 500 folhas)', 'PC', 32.50, 300);
+INSERT INTO PRODUTO (DESCRICAO, UNIDADE, PRECO, ESTOQUE) VALUES ('Café em grãos', 'KG', 79.90, 50);
+
+/* Uma venda em aberto para demonstração (banco recém-criado: ID 1) */
+INSERT INTO VENDA (ID_CLIENTE, OBSERVACAO, VALOR_TOTAL, STATUS)
+  VALUES (1, 'Venda de demonstração', 4479.70, 'ABERTA');
+INSERT INTO VENDA_ITEM (ID_VENDA, ID_PRODUTO, QUANTIDADE, VALOR_UNITARIO, VALOR_TOTAL) VALUES (1, 1, 1, 4299.90, 4299.90);
+INSERT INTO VENDA_ITEM (ID_VENDA, ID_PRODUTO, QUANTIDADE, VALOR_UNITARIO, VALOR_TOTAL) VALUES (1, 2, 2, 89.90, 179.80);
+
+COMMIT;

@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <LangVersion>7.3</LangVersion>
+    <RootNamespace>ERPFinanceiro</RootNamespace>
+    <AssemblyName>ERPFinanceiro</AssemblyName>
+    <AssemblyTitle>ERP Financeiro</AssemblyTitle>
+    <Product>ERP Financeiro</Product>
+    <Version>1.0.0</Version>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+
+    <!-- Executável gerado em ERPFinanceiro\bin -->
+    <OutputPath>..\..\bin\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+
+    <!-- Ajuste conforme a sua instalação -->
+    <DevExpressVersion>24.1.*</DevExpressVersion>
+    <FastReportDir>C:\Program Files (x86)\FastReports\FastReport .NET\Framework 4.0\</FastReportDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Entity Framework 6 + provider Firebird -->
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="EntityFramework.Firebird" Version="10.0.0" />
+    <PackageReference Include="FirebirdSql.Data.FirebirdClient" Version="10.3.1" />
+    <!-- API REST: Web API 2 com self-host OWIN -->
+    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.3.0" />
+    <!-- DevExpress WinForms (feed local "DevExpress 24.x Local", instalado com o produto) -->
+    <PackageReference Include="DevExpress.Win.Grid" Version="$(DevExpressVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- FastReport .NET (instalador oficial). Dependências na mesma pasta são copiadas junto. -->
+    <Reference Include="FastReport">
+      <HintPath>$(FastReportDir)FastReport.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Telas\FrmPrincipal.cs" SubType="Form" />
+    <Compile Update="Telas\FrmQuitacao.cs" SubType="Form" />
+    <Compile Update="Telas\FrmCancelamento.cs" SubType="Form" />
+    <Compile Update="Telas\FrmFila.cs" SubType="Form" />
+  </ItemGroup>
+
+</Project>
